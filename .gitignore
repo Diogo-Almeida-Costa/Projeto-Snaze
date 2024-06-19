@@ -1,0 +1,33 @@
+# Compilador padrão C++
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.dSYM/
+.vscode/
+
+# Diretórios de build
+/build/
+/bin/
+obj/
+
+# Arquivos de logs, temporários e de sistema
+*.log
+*.tmp
+*.swp
+*.bak
+*.old
+*.swo
+*.swn
+*.DS_Store
+Thumbs.db
+
+# Arquivos de configuração de IDEs
+*.code-workspace
+.idea/
+.vscode/

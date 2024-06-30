@@ -7,14 +7,17 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    SnakeGame game(argv[1]);
+    // Exemplo de inicialização com startX = 0 e startY = 0
+    SnakeGame game(argv[1], 0, 0); 
+
     game.initializeGame();
 
     while (!game.isGameOver()) {
         game.processEvents();
-        game.update();
+        game.update(0, 0); // Aqui você pode passar os valores desejados para startX e startY
         game.render();
     }
 
     return 0;
 }
+

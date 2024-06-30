@@ -3,8 +3,7 @@
 
 #include <deque>
 #include <utility>
-
-enum Direction { UP, DOWN, LEFT, RIGHT };
+#include "direction.h"
 
 class Snake {
 public:
@@ -16,7 +15,7 @@ public:
 
 private:
     std::deque<std::pair<int, int>> body;
-    int direction;
+    //int direction;
     Direction currentDirection;
 };
 

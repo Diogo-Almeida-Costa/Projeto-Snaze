@@ -16,6 +16,9 @@
 /bin/
 obj/
 
+# Arquivos executáveis
+src/snakegame
+
 # Arquivos de logs, temporários e de sistema
 *.log
 *.tmp

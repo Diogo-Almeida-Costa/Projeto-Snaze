@@ -10,3 +10,4 @@ enum class Direction {
 };
 
 #endif // DIRECTION_H
+

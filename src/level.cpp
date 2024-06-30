@@ -20,3 +20,12 @@ bool Level::loadLevel() {
 const std::vector<std::string>& Level::getGrid() const {
     return grid;
 }
+
+int Level::getWidth() const {
+    if (grid.empty()) return 0;
+    return grid[0].size();
+}
+
+int Level::getHeight() const {
+    return grid.size();
+}

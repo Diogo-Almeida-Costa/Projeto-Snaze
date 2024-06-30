@@ -9,6 +9,8 @@ public:
     Level(const std::string& filePath);
     bool loadLevel();
     const std::vector<std::string>& getGrid() const;
+    int getWidth() const;   // Retorna a largura do grid (número de colunas)
+    int getHeight() const;  // Retorna a altura do grid (número de linhas)
 
 private:
     std::string filePath;
@@ -16,3 +18,4 @@ private:
 };
 
 #endif // LEVEL_H
+

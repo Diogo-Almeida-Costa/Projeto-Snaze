@@ -9,10 +9,12 @@ Player::Player() {
 }
 
 bool Player::bfs(const Snake& snake, const Level& level, int startX, int startY, Direction& resultDirection) {
-    const std::vector<std::string>& grid = level.getGrid(); // Obtém o grid do level
+    // Obtém as dimensões do grid
+    int width = level.getWidth();
+    int height = level.getHeight();
 
     // Verifica se a posição inicial está dentro dos limites
-    if (startX < 0 || startY < 0 || startX >= grid[0].size() || startY >= grid.size())
+    if (startX < 0 || startY < 0 || startX >= width || startY >= height)
         return false;
 
     // Movimentos possíveis (UP, DOWN, LEFT, RIGHT)
@@ -23,11 +25,11 @@ bool Player::bfs(const Snake& snake, const Level& level, int startX, int startY,
     q.push({ startX, startY });
 
     // Mapa de visitados
-    std::vector<std::vector<bool>> visited(grid.size(), std::vector<bool>(grid[0].size(), false));
+    std::vector<std::vector<bool>> visited(height, std::vector<bool>(width, false));
     visited[startY][startX] = true;
 
     // Mapa para armazenar os pais dos nós para reconstruir o caminho
-    std::vector<std::vector<std::pair<int, int>>> parent(grid.size(), std::vector<std::pair<int, int>>(grid[0].size(), {-1, -1}));
+    std::vector<std::vector<std::pair<int, int>>> parent(height, std::vector<std::pair<int, int>>(width, {-1, -1}));
 
     while (!q.empty()) {
         int x = q.front().first;
@@ -35,7 +37,7 @@ bool Player::bfs(const Snake& snake, const Level& level, int startX, int startY,
         q.pop();
 
         // Chegamos ao destino
-        if (grid[y][x] == 'F') {
+        if (level.getGrid()[y][x] == 'F') {
             // Reconstrói o caminho até o ponto inicial
             while (parent[y][x] != std::make_pair(startX, startY)) {
                 std::pair<int, int> prev = parent[y][x];
@@ -63,8 +65,8 @@ bool Player::bfs(const Snake& snake, const Level& level, int startX, int startY,
             }
 
             // Verifica se a próxima posição é válida e não visitada
-            if (nx >= 0 && ny >= 0 && nx < grid[0].size() && ny < grid.size() &&
-                !visited[ny][nx] && (grid[ny][nx] == ' ' || grid[ny][nx] == 'F')) {
+            if (nx >= 0 && ny >= 0 && nx < width && ny < height &&
+                !visited[ny][nx] && (level.getGrid()[ny][nx] == ' ' || level.getGrid()[ny][nx] == 'F')) {
                 q.push({ nx, ny });
                 visited[ny][nx] = true;
                 parent[ny][nx] = { x, y };
@@ -102,4 +104,3 @@ Direction Player::nextMove() {
 
     return nextDirection;
 }
-
